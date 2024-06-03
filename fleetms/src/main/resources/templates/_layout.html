@@ -317,7 +317,7 @@
 
     <!--sidebar start-->
     <aside>
-        <div id="sidebar" class="nav-collapse ">
+        <div id="sidebar" class="nav-collapse" >
             <!-- sidebar menu start-->
             <ul class="sidebar-menu">
                 <li class="active">
@@ -328,7 +328,7 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="icon_document_alt"></i>
+                        <i class="fa fa-truck"></i>
                         <span>Fleet</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
@@ -338,7 +338,7 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="icon_desktop"></i>
+                        <i class="fa fa-users"></i>
                         <span>HR</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
@@ -348,7 +348,7 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="icon_table"></i>
+                        <i class="fa fa-usd"></i>
                         <span>Accounts</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
@@ -358,36 +358,47 @@
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="icon_documents_alt"></i>
-                        <span>Payroll</span>
-                        <span class="menu-arrow arrow_carrot-right"></span>
-                    </a>
-                    <ul class="sub">
-                        <li><a class="" href="/payroll">Payroll Home</a></li>
-                    </ul>
-                </li>
-                <li class="sub-menu">
-                    <a href="javascript:;" class="">
-                        <i class="icon_table"></i>
+                        <i class="fa fa-question"></i>
                         <span>HelpDesk</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="/helpdesk">HelpDesk </a></li>
+                        <li><a class="" href="/helpdesk">HelpDesk</a></li>
                     </ul>
                 </li>
                 <li class="sub-menu">
                     <a href="javascript:;" class="">
-                        <i class="icon_documents_alt"></i>
-                        <span>Settings</span>
+                        <i class="fa fa-gear"></i>
+                        <span>Parameters</span>
                         <span class="menu-arrow arrow_carrot-right"></span>
                     </a>
                     <ul class="sub">
-                        <li><a class="" href="/parameters">Settings Home</a></li>
-                        <li><a class="" href="/countries">Country List</a></li>
+                        <li><a class="" href="/parameters">Parameters Home</a></li>
                     </ul>
                 </li>
 
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-book"></i>
+                        <span>Reports</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" th:href="@{/reports}">Reports Home</a></li>
+                        <li><a class="" th:href="@{/reports}">New Report</a></li>
+                        <li><a class="" th:href="@{/reports}">Summary Page</a></li>
+                    </ul>
+                </li>
+                <li class="sub-menu">
+                    <a href="javascript:;" class="">
+                        <i class="fa fa-key"></i>
+                        <span>Security</span>
+                        <span class="menu-arrow arrow_carrot-right"></span>
+                    </a>
+                    <ul class="sub">
+                        <li><a class="" href="/security">Security Home</a></li>
+                    </ul>
+                </li>
             </ul>
             <!-- sidebar menu end-->
         </div>
@@ -397,15 +408,7 @@
     <!--main content start-->
     <section id="main-content">
         <section class="wrapper">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h3 class="page-header"><i class="fa fa-laptop"></i> Dashboard</h3>
-                    <ol class="breadcrumb">
-                        <li><i class="fa fa-home"></i><a href="index.html">Home</a></li>
-                        <li><i class="fa fa-laptop"></i>Dashboard</li>
-                    </ol>
-                </div>
-            </div>
+
             <div layout:fragment="content">
                 <p>Changing contents</p>
             </div>

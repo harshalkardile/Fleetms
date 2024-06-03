@@ -1038,7 +1038,7 @@ ul.sidebar-menu li.active a i {
 
     display: inline-block;
 
-    margin-top: 60px;
+    margin-top: 30px;
 
     padding: 15px;
 
@@ -2116,6 +2116,8 @@ div[data-role="editor-toolbar"] {
 
 .panel {
 
+  margin-top: 30px;
+
   border:none;
 
   -webkit-border-radius: 0px;
@@ -2287,6 +2289,8 @@ div[data-role="editor-toolbar"] {
 }
 
 .panel .panel-body {
+
+
 
   border-width: 1px 1px 2px;
 
