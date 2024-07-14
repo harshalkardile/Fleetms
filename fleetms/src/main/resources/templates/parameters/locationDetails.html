@@ -47,13 +47,13 @@
                                 <div class="form-group row">
                                     <label for="detailsAdd" class="col-form-label col-sm-4">Address:</label>
                                     <div class="col-sm-6">
-                                        <textarea type="text" th:field="${location.address}" class="form-control" id="addressAdd" name="address"></textarea>
+                                        <textarea type="text" th:field="${location.address}" readonly class="form-control" id="addressAdd" name="address"></textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
                                     <label for="ddlCountryAdd" class="col-form-label col-sm-4">Country: </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" id="ddlCountryAdd" name="countryid">
+                                        <select class="form-control" id="ddlCountryAdd" name="countryid" disabled>
                                             <option th:value="${null}">-SELECT-</option>
                                             <option th:each="country : ${countries}"
                                                     th:value="${country.id}"
@@ -66,7 +66,7 @@
                                 <div class="form-group row">
                                     <label for="ddlStateAdd" class="col-form-label col-sm-4">State: </label>
                                     <div class="col-sm-6">
-                                        <select class="form-control" id="ddlStateAdd" name="stateid">
+                                        <select class="form-control" id="ddlStateAdd" name="stateid" disabled>
                                             <option th:value="${null}">-SELECT-</option>
                                             <option th:each="state : ${states}"
                                                     th:value="${state.id}"
@@ -79,7 +79,7 @@
                                 <div class="form-group">
                                     <label for="detailsAdd" class="col-form-label col-sm-4">Details:</label>
                                     <div class="col-sm-6">
-                                        <textarea type="text" th:field="${location.details}" class="form-control" id="detailsAdd" name="details"></textarea>
+                                        <textarea type="text" th:field="${location.details}" readonly class="form-control" id="detailsAdd" name="details"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -87,8 +87,8 @@
                     </section>
                     <section class="panel">
                         <div class="panel-body">
-                            <a th:href="@{'/parameters/location/Edit/'+${location.id}}" type="submit" class="btn btn-primary">
-                                Edit Record
+                            <a th:href="@{'/parameters/location/Edit/'+${location.id}}" disabled type="submit" class="btn btn-primary">
+                                Edit
                             </a>
                             <a href="/parameters/locations" class="btn  btn-warning">
                                 Exit
