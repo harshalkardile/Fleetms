@@ -54,7 +54,7 @@
                                     <div class="form-group row">
                                         <label for="txtAddressAdd" class="col-sm-4 col-form-label">Address</label>
                                         <div class="col-sm-6">
-                                            <textarea class="form-control" th:value="${client.address}" id="txtAddressAdd" name="address" placeholder="Address" rows="2"></textarea>
+                                            <textarea class="form-control" th:text="${client.address}" id="txtAddressAdd" name="address" placeholder="Address" rows="2"></textarea>
                                         </div>
                                     </div>
                                 </div>
@@ -79,7 +79,7 @@
                                                 <option>-SELECT-</option>
                                                 <option th:each="state : ${states}"
                                                         th:value="${state.id}"
-                                                        th:selected="${state.id} == ${client.countryid}?True: False"
+                                                        th:selected="${state.id} == ${client.stateid}?True: False"
                                                         th:text="${state.name}">
                                                 </option>
                                             </select>
