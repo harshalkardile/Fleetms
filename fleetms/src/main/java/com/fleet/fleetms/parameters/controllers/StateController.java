@@ -49,7 +49,7 @@ public class StateController {
         return "redirect:/parameters/states";
     }
 
-    @RequestMapping(value="/parameters/states/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
+    @RequestMapping(value="/parameters/state/delete/{id}", method = {RequestMethod.DELETE, RequestMethod.GET})
     public String delete(@PathVariable Integer id) {
         stateService.delete(id);
         return "redirect:/parameters/states";
