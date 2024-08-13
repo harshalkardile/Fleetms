@@ -19,9 +19,21 @@
         <div class="col-lg-12">
             <section class="panel">
                 <div class="panel-body">
-                    <a href="/countryAdd" class="btn btn-primary">
-                        Add New Country
-                    </a>
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <a href="/countryAdd" class="btn btn-primary">
+                            Add New Country
+                            </a>
+                        </div>
+                        <form th:action="@{/countries}" method="get">
+                            <div class="col-lg-3">
+                                <input class="form-control" type="text" name="keyword">
+                            </div>
+                            <div class="col-lg-3">
+                                <input type="submit" class="btn btn-success">
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </section>
             <section class="panel">
