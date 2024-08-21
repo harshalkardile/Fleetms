@@ -26,6 +26,14 @@ public class CountryController {
         return "parameters/countryList";
     }
 
+    @GetMapping("/countries/{field}")
+    public String getAllWithSort(Model model, @PathVariable("field") String field){
+        List<Country> countries;
+        System.out.println(field);
+        countries = countryService.findAllWithSort(field);
+        model.addAttribute("countries", countries);
+        return "parameters/countryList";
+    }
     //The Get Country By Id
     @GetMapping("/parameters/country/{id}")
     @ResponseBody
