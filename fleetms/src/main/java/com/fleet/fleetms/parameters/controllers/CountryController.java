@@ -3,6 +3,7 @@ package com.fleet.fleetms.parameters.controllers;
 import ch.qos.logback.core.net.SyslogOutputStream;
 import com.fleet.fleetms.parameters.models.Country;
 import com.fleet.fleetms.parameters.services.CountryService;
+import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.gson.GsonProperties;
 import org.springframework.stereotype.Controller;
@@ -27,10 +28,13 @@ public class CountryController {
     }
 
     @GetMapping("/countries/{field}")
-    public String getAllWithSort(Model model, @PathVariable("field") String field){
-        List<Country> countries;
-        System.out.println(field);
-        countries = countryService.findAllWithSort(field);
+    public String getAllWithSort(Model model, @PathVariable("field") String field, @RequestParam(value = "sortDir", required = false) String sortDir) {
+        if (sortDir == null || sortDir.isEmpty()) {
+            sortDir = "asc";  // Default to ascending order if no direction is provided
+        }
+        List<Country> countries = countryService.findAllWithSort(field, sortDir);
+        model.addAttribute("sortDir", sortDir);
+        model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
         model.addAttribute("countries", countries);
         return "parameters/countryList";
     }

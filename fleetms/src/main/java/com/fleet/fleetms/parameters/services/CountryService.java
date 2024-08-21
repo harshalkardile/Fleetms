@@ -34,7 +34,10 @@ public class CountryService {
         return countryRepository.findByKeyword(keyword);
     }
 
-    public List<Country> findAllWithSort(String field){
-        return countryRepository.findAll(Sort.by(field));
+    public List<Country> findAllWithSort(String field, String direction) {
+        Sort sort = direction.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(field).ascending() : Sort.by(field).descending();
+        return countryRepository.findAll(sort);
     }
+
 }
+
