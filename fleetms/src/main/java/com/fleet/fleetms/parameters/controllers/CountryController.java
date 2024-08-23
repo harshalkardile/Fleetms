@@ -6,6 +6,7 @@ import com.fleet.fleetms.parameters.services.CountryService;
 import jakarta.websocket.server.PathParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.gson.GsonProperties;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,26 +19,55 @@ public class CountryController {
     @Autowired
     private CountryService countryService;
 
+//    @GetMapping("/countries")
+//    public String getAll(Model model, String keyword){
+//        List<Country> countries;
+//        System.out.println(keyword);
+//        countries = keyword == null? countryService.getAll():countryService.findByKeyword(keyword);
+//        model.addAttribute("countries", countries);
+//        return "parameters/countryList";
+//    }
+
     @GetMapping("/countries")
-    public String getAll(Model model, String keyword){
-        List<Country> countries;
-        System.out.println(keyword);
-        countries = keyword == null? countryService.getAll():countryService.findByKeyword(keyword);
+    public String getAllPages(Model model){
+        return getOnePage(model, 1);
+    }
+
+    @GetMapping("/countries/page/{pageNumber}")
+    public String getOnePage(Model model, @PathVariable("pageNumber") int currentPage ){
+        Page<Country> page = countryService.findPage(currentPage);
+        int totalPages = page.getTotalPages();
+        long totalItems = page.getTotalElements();
+
+        List<Country> countries = page.getContent();
+
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("totalItems", totalItems);
         model.addAttribute("countries", countries);
+
         return "parameters/countryList";
     }
 
-    @GetMapping("/countries/{field}")
-    public String getAllWithSort(Model model, @PathVariable("field") String field, @RequestParam(value = "sortDir", required = false) String sortDir) {
-        if (sortDir == null || sortDir.isEmpty()) {
-            sortDir = "asc";  // Default to ascending order if no direction is provided
-        }
-        List<Country> countries = countryService.findAllWithSort(field, sortDir);
+    @GetMapping("/countries/page/{pageNumber:\\d+}/{field}")
+    public String getPageWithSort(Model model,
+                                  @PathVariable("pageNumber") int currentPage,
+                                  @PathVariable("field") String field,
+                                  @RequestParam(value = "sortDir", defaultValue = "asc") String sortDir) {
+        Page<Country> page = countryService.findAllWithSort(field, sortDir, currentPage);
+        List<Country> countries = page.getContent();
+
+        model.addAttribute("currentPage", currentPage);
+        model.addAttribute("totalPages", page.getTotalPages());
+        model.addAttribute("totalItems", page.getTotalElements());
         model.addAttribute("sortDir", sortDir);
         model.addAttribute("reverseSortDir", sortDir.equals("asc") ? "desc" : "asc");
         model.addAttribute("countries", countries);
+        model.addAttribute("sortField", field);
+
         return "parameters/countryList";
     }
+
     //The Get Country By Id
     @GetMapping("/parameters/country/{id}")
     @ResponseBody

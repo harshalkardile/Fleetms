@@ -3,6 +3,9 @@ package com.fleet.fleetms.parameters.services;
 import com.fleet.fleetms.parameters.models.Country;
 import com.fleet.fleetms.parameters.repositories.CountryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -16,6 +19,11 @@ public class CountryService {
 
     public List<Country> getAll(){
         return countryRepository.findAll();
+    }
+
+    public Page<Country> findPage(int pageNumber){
+        Pageable pageable = PageRequest.of(pageNumber - 1, 5);
+        return countryRepository.findAll(pageable);
     }
 
     public void save(Country country){
@@ -34,9 +42,10 @@ public class CountryService {
         return countryRepository.findByKeyword(keyword);
     }
 
-    public List<Country> findAllWithSort(String field, String direction) {
-        Sort sort = direction.equalsIgnoreCase(Sort.Direction.ASC.name()) ? Sort.by(field).ascending() : Sort.by(field).descending();
-        return countryRepository.findAll(sort);
+    public Page<Country> findAllWithSort(String field, String direction, int pageNumber) {
+        Sort sort = Sort.by(direction.equalsIgnoreCase("asc") ? Sort.Direction.ASC : Sort.Direction.DESC, field);
+        Pageable pageable = PageRequest.of(pageNumber - 1, 5, sort);
+        return countryRepository.findAll(pageable);
     }
 
 }
