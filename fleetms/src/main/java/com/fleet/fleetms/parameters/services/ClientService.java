@@ -18,7 +18,7 @@ public class ClientService {
 
     //Get Client By Id
     public Client findById(int id) {
-        return clientRepository.findById(id).orElse(null);
+         return clientRepository.findById(id).orElse(null);
     }
 
     //Delete Client
