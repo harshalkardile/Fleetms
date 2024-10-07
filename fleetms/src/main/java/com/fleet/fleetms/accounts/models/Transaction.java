@@ -7,11 +7,14 @@ import org.springframework.format.annotation.DateTimeFormat;
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fleet.fleetms.hr.models.Employee;
+import com.fleet.fleetms.parameters.models.Client;
 import com.fleet.fleetms.parameters.models.Contact;
+import com.fleet.fleetms.parameters.models.Supplier;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.Data;
