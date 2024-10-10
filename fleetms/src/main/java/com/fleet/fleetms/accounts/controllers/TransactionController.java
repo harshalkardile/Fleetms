@@ -1,16 +1,5 @@
 package com.fleet.fleetms.accounts.controllers;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-
 import com.fleet.fleetms.accounts.models.Transaction;
 import com.fleet.fleetms.accounts.services.TransactionService;
 import com.fleet.fleetms.accounts.services.TransactionStatusService;
@@ -19,6 +8,12 @@ import com.fleet.fleetms.hr.services.EmployeeService;
 import com.fleet.fleetms.parameters.services.ClientService;
 import com.fleet.fleetms.parameters.services.ContactService;
 import com.fleet.fleetms.parameters.services.SupplierService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class TransactionController {
@@ -41,9 +36,9 @@ public class TransactionController {
 	    public Model addModelAttributes(Model model){
 	        model.addAttribute("transactionStatuses", transactionStatusService.findAll());
 	        model.addAttribute("transactionTypes", transactionTypeService.findAll());
-	        model.addAttribute("contacts", contactService.findAll());
-	        model.addAttribute("suppliers", supplierService.findAll());
-	        model.addAttribute("clients", clientService.findAll());
+	        model.addAttribute("contacts", contactService.getAll());
+	        model.addAttribute("suppliers", supplierService.getAll());
+	        model.addAttribute("clients", clientService.getAll());
 	        model.addAttribute("employees", employeeService.findAll());
 	        return model;
 	    }

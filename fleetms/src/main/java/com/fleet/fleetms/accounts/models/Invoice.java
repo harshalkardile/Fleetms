@@ -1,22 +1,15 @@
 package com.fleet.fleetms.accounts.models;
 
-import java.util.Date;
-
-import org.springframework.format.annotation.DateTimeFormat;
-
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.fleet.fleetms.parameters.models.Client;
-
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 @Entity
 @Data
@@ -38,7 +31,7 @@ public class Invoice {
 	private Integer invoicestatusid;
 	
 	@ManyToOne
-	@JoinColumn(name="clientid", insertable=false, updatable=false)	
+	@JoinColumn(name="clientid", insertable=false, updatable=false)
 	private Client client;
 	private Integer clientid;
 	
